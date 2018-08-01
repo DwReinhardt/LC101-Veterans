@@ -1,40 +1,42 @@
-alphabet = {"a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25}
+alphabet_lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+alphabet_upper = ["A", "B", "B", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
 
 def alphabet_position(letter):
     tmp = letter.lower()
-    return(alphabet[tmp])
+    return(alphabet_lower.index(tmp))
+    
+def rotated_char(index, case):
+    if case == "lower":
+        return(alphabet_lower[index])
+    else:
+        return(alphabet_upper[index])
+
 
 def rotate_character(char, rot):
-    upper_tracker = False
-    answer = ""
     if char.isalpha() == False:
         return char
-    else:
-        rotated_value = alphabet_position(char) + rot # rotate by rot
-        if rotated_value > 25:
-            rotated_value = rotated_value % 26
-            answer = list(alphabet.keys())[list(alphabet.values()).index(rotated_value)]
-            if char.isupper():
-                answer = answer.upper()
+    case = "lower"
+    if char.isupper() == True:
+        case = "upper"
+    rotated_value = alphabet_position(char) + rot # rotate by rot
+    if rotated_value > 25:
+        rotated_value = rotated_value % 26
+    answer = rotated_char(rotated_value, case)
     return answer
 
 def encrypt(text, rot):
-    encrypted = []
+    encrypted = ""
     i = 0
     while i < len(text):
         tmp = text[i]
-        i = i + 1
+        i += 1
         middle_step = rotate_character(tmp, rot)
-        print(middle_step)
-        encrypted.append(middle_step)
-        print(encrypted)
-        answer = ''.join(encrypted)           # joins the characters
-    print(answer)
-        #cypher_msg.append(encrypted))
-
+        encrypted = encrypted + middle_step
+    return encrypted
 
 def main():
     encrypt("Hello, World!", 5)
-
+ 
 if __name__ == "__main__":
     main()
