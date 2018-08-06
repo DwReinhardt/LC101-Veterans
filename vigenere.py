@@ -18,7 +18,7 @@ def encrypt(text, key):
                 key_index = 0 
         i += 1
         encrypted = encrypted + middle_step
-    return print("your encrypted message is: ", encrypted)
+    return encrypted
 
 def main():
     #encrypt(input("what message would you like to encrypt?\n"), input("What is your key word?\n"))
