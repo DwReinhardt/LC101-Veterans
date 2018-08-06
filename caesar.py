@@ -8,7 +8,7 @@ def encrypt(text, rot):
         i += 1
         middle_step = rotate_character(tmp, rot)
         encrypted = encrypted + middle_step
-    return print("your encrypted message is: ", encrypted)
+    return encrypted
 
 def main():
     #encrypt(input("what message would you like to encrypt?\n"), int(input("how far would you like to rotate it?\n")))
